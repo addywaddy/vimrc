@@ -42,10 +42,16 @@ Bundle "kien/ctrlp.vim"
 Bundle "jceb/vim-orgmode"
 Bundle "vim-scripts/VimClojure"
 Bundle "kchmck/vim-coffee-script"
+Bundle "rson/vim-conque"
 Bundle "jpalardy/vim-slime"
 Bundle "Raimondi/delimitMate"
 Bundle "zatan/molokai.vim"
 Bundle "seaofclouds/vim-colorx"
+Bundle "skwp/vim-ruby-conque"
+Bundle "digitaltoad/vim-jade"
+Bundle "chriskempson/tomorrow-theme", {'rtp': 'vim/'}
+Bundle "skammer/vim-css-color"
+Bundle "iandoe/vim-osx-colorpicker"
 
 " Set the Leader key
 let mapleader=","
