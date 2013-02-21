@@ -11,7 +11,6 @@ Bundle "mileszs/ack.vim"
 Bundle "tpope/vim-haml"
 Bundle "michaeljsmith/vim-indent-object"
 Bundle "pangloss/vim-javascript"
-Bundle "wycats/nerdtree"
 Bundle "ddollar/nerdcommenter"
 Bundle "tpope/vim-surround"
 Bundle "vim-scripts/taglist.vim"
@@ -96,10 +95,6 @@ set laststatus=2
 " equalalways behavior to be triggered the next time CommandT is used.
 " This is likely a bludgeon to solve some other issue, but it works
 set noequalalways
-
-" NERDTree configuration
-let NERDTreeIgnore=['\.pyc$', '\.rbc$', '\~$']
-map <Leader>n :NERDTreeToggle<CR>
 
 " ZoomWin configuration
 map <Leader><Leader> :ZoomWin<CR>
