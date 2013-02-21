@@ -103,7 +103,7 @@ map <Leader><Leader> :ZoomWin<CR>
 function s:setupWrapping()
   set wrap
   set wrapmargin=2
-  set textwidth=72
+  set textwidth=100
 endfunction
 
 function s:setupMarkup()
