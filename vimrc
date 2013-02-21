@@ -48,6 +48,9 @@ Bundle "seaofclouds/vim-colorx"
 Bundle "skwp/vim-ruby-conque"
 Bundle "digitaltoad/vim-jade"
 Bundle "chriskempson/tomorrow-theme", {'rtp': 'vim/'}
+Bundle "vim-ruby/vim-ruby"
+Bundle "spolu/dwm.vim"
+Bundle "matthias-guenther/hammer.vim"
 
 " Set the Leader key
 let mapleader=","
