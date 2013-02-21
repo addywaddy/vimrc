@@ -224,6 +224,8 @@ let g:slime_target = "tmux"
 " For ClojureScript
 
 au BufNewFile,BufRead *.cljs set filetype=clojure
+au BufNewFile,BufRead *.erb set filetype=eruby
+au BufNewFile,BufRead *.txt set filetype=text
 
 " Disable git status for now
 call Pl#Theme#RemoveSegment('fugitive:branch')
