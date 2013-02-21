@@ -8,7 +8,6 @@ Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-fugitive'
 Bundle "mileszs/ack.vim"
-Bundle "vim-scripts/Color-Sampler-Pack"
 Bundle "tpope/vim-haml"
 Bundle "michaeljsmith/vim-indent-object"
 Bundle "pangloss/vim-javascript"
