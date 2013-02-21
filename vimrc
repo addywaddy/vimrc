@@ -227,5 +227,52 @@ au BufNewFile,BufRead *.cljs set filetype=clojure
 au BufNewFile,BufRead *.erb set filetype=eruby
 au BufNewFile,BufRead *.txt set filetype=text
 
-" Disable git status for now
 call Pl#Theme#RemoveSegment('fugitive:branch')
+
+" Tab navigation
+map <Leader>k1 1gt
+map <Leader>k2 2gt
+map <Leader>k3 3gt
+map <Leader>k4 4gt
+map <Leader>k5 5gt
+map <Leader>k6 6gt
+map <Leader>k7 7gt
+map <Leader>k8 8gt
+map <Leader>k9 9gt
+map <Leader>k10 10gt
+
+" Tags
+map<Leader>t :TlistToggle<Cr>
+
+" DWM remapping
+nmap <C-ß> <Plug>DWMFocus
+
+" Simple Markdown generation
+
+map <Leader>m :!markdown % > /tmp/test.html && open -a "Google Chrome" /tmp/test.html<Cr>
+map <Leader>a :Ack!
+imap jj <Esc>
+
+if has("gui_macvim")
+  let macvim_skip_hig_shift_movement = 1
+  set guifont=Monaco:h15
+  colorscheme Tomorrow-Night
+  map <D-1> :tabfirst<Cr>
+  map <D-2> :tabfirst<Cr>gt
+  map <D-3> :tabfirst<Cr>3gt
+  map <D-4> :tabfirst<Cr>4gt
+  map <D-5> :tabfirst<Cr>5gt
+  map <D-6> :tabfirst<Cr>6gt
+  map <D-7> :tabfirst<Cr>7gt
+  map <D-8> :tabfirst<Cr>8gt
+  map <D-9> :tabfirst<Cr>9gt
+  
+  " Get our shell aliases working in GVim
+  set shellcmdflag=-ci
+endif
+
+let g:snippets_dir="~/.vim/snippets/,~/.vim/bundle/snipmate.vim/snippets/"
+
+" make shell interative, thus loading .zshrc
+"set shell=zsh\ -i
+"set shellcmdflag=-ic
