@@ -48,8 +48,6 @@ Bundle "seaofclouds/vim-colorx"
 Bundle "skwp/vim-ruby-conque"
 Bundle "digitaltoad/vim-jade"
 Bundle "chriskempson/tomorrow-theme", {'rtp': 'vim/'}
-Bundle "skammer/vim-css-color"
-Bundle "iandoe/vim-osx-colorpicker"
 
 " Set the Leader key
 let mapleader=","
