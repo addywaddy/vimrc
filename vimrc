@@ -6,6 +6,9 @@ Bundle 'L9'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'tpope/vim-rails'
+Bundle "skwp/vim-ruby-conque"
+Bundle "kien/ctrlp.vim"
+Bundle "spolu/dwm.vim"
 Bundle 'tpope/vim-fugitive'
 Bundle "mileszs/ack.vim"
 Bundle "tpope/vim-haml"
@@ -14,49 +17,49 @@ Bundle "pangloss/vim-javascript"
 Bundle "ddollar/nerdcommenter"
 Bundle "tpope/vim-surround"
 Bundle "vim-scripts/taglist.vim"
-Bundle "tpope/vim-vividchalk"
-Bundle "altercation/vim-colors-solarized"
 Bundle "ervandew/supertab"
 Bundle "tpope/vim-cucumber"
 Bundle "timcharper/textile.vim"
-Bundle "taq/vim-rspec"
-Bundle "vim-scripts/ZoomWin"
 Bundle "msanders/snipmate.vim"
 Bundle "tpope/vim-markdown"
 Bundle "godlygeek/tabular"
 Bundle "tpope/vim-unimpaired"
-Bundle "vim-scripts/searchfold.vim"
 Bundle "tpope/vim-endwise"
-Bundle "wgibbs/vim-irblack"
 Bundle "kchmck/vim-coffee-script"
 Bundle "scrooloose/syntastic"
-Bundle "ajf/puppet-vim"
-Bundle "bdd/vim-scala"
-Bundle "mattn/gist-vim"
 Bundle "walm/jshint.vim"
 Bundle "Lokaltog/vim-powerline"
-Bundle "sickill/vim-pasta"
-Bundle "kien/ctrlp.vim"
-Bundle "jceb/vim-orgmode"
-Bundle "vim-scripts/VimClojure"
-Bundle "kchmck/vim-coffee-script"
 Bundle "rson/vim-conque"
 Bundle "jpalardy/vim-slime"
-Bundle "Raimondi/delimitMate"
-Bundle "zatan/molokai.vim"
-Bundle "seaofclouds/vim-colorx"
-Bundle "skwp/vim-ruby-conque"
-Bundle "digitaltoad/vim-jade"
 Bundle "chriskempson/tomorrow-theme", {'rtp': 'vim/'}
 Bundle "vim-ruby/vim-ruby"
-Bundle "spolu/dwm.vim"
-Bundle "matthias-guenther/hammer.vim"
+Bundle "morhetz/gruvbox"
+Bundle "kana/vim-textobj-user"
+Bundle "nelstrom/vim-textobj-rubyblock"
+Bundle "wookiehangover/jshint.vim"
+Bundle "guns/vim-clojure-static"
+Bundle "kien/rainbow_parentheses.vim"
+Bundle "jiangmiao/auto-pairs"
+Bundle "sjl/vitality.vim"
+Bundle "tpope/vim-fireplace"
+
+if has('gui_running')
+  set guifont=Inconsolata_for_Powerline:h15
+  noremap <D-1> 1gt
+  noremap <D-2> 2gt
+  noremap <D-3> 3gt
+  noremap <D-4> 4gt
+  noremap <D-5> 5gt
+  noremap <D-6> 6gt
+  noremap <D-7> 7gt
+  noremap <D-8> 8gt
+  noremap <D-9> 9gt
+  Bundle 'thanthese/Tortoise-Typing'
+endif
 
 " Set the Leader key
 let mapleader=","
 let maplocalleader=","
-
-map <M-CR> <C-]>
 
 " 256 colors please
 let &t_Co=256
@@ -65,7 +68,6 @@ let &t_Co=256
 :set mouse=a
 
 syntax enable
-set background=dark
 
 set wrap
 set nocompatible
@@ -87,40 +89,19 @@ set smartcase
 
 " Tab completion
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,coverage/,tmp/,log/
+set wildignore+=*/doc/*
 
 " Status bar
 set laststatus=2
 
-" Without setting this, ZoomWin restores windows in a way that causes
-" equalalways behavior to be triggered the next time CommandT is used.
-" This is likely a bludgeon to solve some other issue, but it works
-set noequalalways
+" Syntaxes
+  au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru,*.pill}    set ft=ruby
 
-" ZoomWin configuration
-map <Leader><Leader> :ZoomWin<CR>
+"au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 
-function s:setupWrapping()
-  set wrap
-  set wrapmargin=2
-  set textwidth=100
-endfunction
-
-function s:setupMarkup()
-  call s:setupWrapping()
-  map <buffer> <Leader>p :Hammer<CR>
-endfunction
-
-" Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
-au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru}    set ft=ruby
-
-" md, markdown, and mk are markdown and define buffer-local preview
-au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
-
-" add json syntax highlighting
 au BufNewFile,BufRead *.json set ft=javascript
 
-" less css files
 au BufRead,BufNewFile *.less set ft=css
 
 au BufRead,BufNewFile *.txt call s:setupWrapping()
@@ -131,42 +112,11 @@ set backspace=indent,eol,start
 " load the plugin and indent settings for the detected filetype
 filetype plugin indent on
 
-" Opens an edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>e
-map <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
-
-" Opens a tab edit command with the path of the currently edited file filled in
-" Normal mode: <Leader>t
-map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
-
-" Inserts the path of the currently edited file into a command
-" Command mode: Ctrl+P
-cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
-
-" Unimpaired configuration
-" Bubble single lines
-nmap <C-Up> [e
-nmap <C-Down> ]e
-" Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
+let g:ctrlp_custom_ignore = {'dir':  'doc/,coverage/'}
 
 " Enable syntastic syntax checking
 let g:syntastic_enable_signs=1
 let g:syntastic_quiet_warnings=1
-
-" gist-vim defaults
-if has("mac")
-  let g:gist_clip_command = 'pbcopy'
-elseif has("unix")
-  let g:gist_clip_command = 'xclip -selection clipboard'
-endif
-let g:gist_detect_filetype = 1
-let g:gist_open_browser_after_post = 1
-
-" Use modeline overrides
-set modeline
-set modelines=10
 
 " Directories for swp files
 "set backupdir=~/.vim/backup
@@ -175,9 +125,6 @@ set modelines=10
 " Sod backups and swaps
 set nobackup
 set noswapfile
-
-" Turn off jslint errors by default
-let g:JSLintHighlightErrorLine = 0
 
 " % to bounce from do to end etc.
 runtime! macros/matchit.vim
@@ -193,86 +140,77 @@ au GUIEnter * set vb t_vb=
 " Powerline Fancy stuff
 let g:Powerline_symbols = 'fancy'
 
-colorscheme solarized
-
-
-" Here's the vimclojure stuff. You'll need to adjust the NailgunClient
-" setting if you're on windows or have other problems.
-let vimclojure#FuzzyIndent=1
-let vimclojure#HighlightBuiltins=1
-let vimclojure#HighlightContrib=1
-let vimclojure#DynamicHighlighting=1
-let vimclojure#ParenRainbow=1
-"let vimclojure#WantNailgun = 1
-"let vimclojure#NailgunClient = $HOME . "/.bin/ng"
-
-function! s:pbcopy()
-  call system("pbcopy", getreg(""))
-endfunction
-
-command! -nargs=0 -bar CC call s:pbcopy()
-
-function! s:pbpaste()
-  call setreg("", system("pbpaste"))
-endfunction
-
-command! -nargs=0 -bar PP call s:pbpaste()
-
-" Slime config
-let g:slime_target = "tmux"
-
-" For ClojureScript
-
-au BufNewFile,BufRead *.cljs set filetype=clojure
-au BufNewFile,BufRead *.erb set filetype=eruby
-au BufNewFile,BufRead *.txt set filetype=text
-
-call Pl#Theme#RemoveSegment('fugitive:branch')
-
 " Tab navigation
-map <Leader>k1 1gt
-map <Leader>k2 2gt
-map <Leader>k3 3gt
-map <Leader>k4 4gt
-map <Leader>k5 5gt
-map <Leader>k6 6gt
-map <Leader>k7 7gt
-map <Leader>k8 8gt
-map <Leader>k9 9gt
-map <Leader>k10 10gt
+noremap <Leader>1 1gt
+noremap <Leader>2 2gt
+noremap <Leader>3 3gt
+noremap <Leader>4 4gt
+noremap <Leader>5 5gt
+noremap <Leader>6 6gt
+noremap <Leader>7 7gt
+noremap <Leader>8 8gt
+noremap <Leader>9 9gt
 
 " Tags
 map<Leader>t :TlistToggle<Cr>
 
-" DWM remapping
-nmap <C-ß> <Plug>DWMFocus
-
 " Simple Markdown generation
 
 map <Leader>m :!markdown % > /tmp/test.html && open -a "Google Chrome" /tmp/test.html<Cr>
-map <Leader>a :Ack!
-imap jj <Esc>
 
-if has("gui_macvim")
-  let macvim_skip_hig_shift_movement = 1
-  set guifont=Monaco:h15
-  colorscheme Tomorrow-Night
-  map <D-1> :tabfirst<Cr>
-  map <D-2> :tabfirst<Cr>gt
-  map <D-3> :tabfirst<Cr>3gt
-  map <D-4> :tabfirst<Cr>4gt
-  map <D-5> :tabfirst<Cr>5gt
-  map <D-6> :tabfirst<Cr>6gt
-  map <D-7> :tabfirst<Cr>7gt
-  map <D-8> :tabfirst<Cr>8gt
-  map <D-9> :tabfirst<Cr>9gt
-  
-  " Get our shell aliases working in GVim
-  set shellcmdflag=-ci
-endif
+imap jk <Esc>
+imap <C-e> <C-o>$
+imap <C-a> <C-o>0
+noremap ff /
+noremap ww :w<cr>
+noremap wq :wq<cr>
+noremap qq :q<cr>
+noremap j gj
+noremap k gk
 
-let g:snippets_dir="~/.vim/snippets/,~/.vim/bundle/snipmate.vim/snippets/"
+vmap " S"
+vmap ' S'
+vmap ( S)
+vmap { S}
+vmap [ S]
 
-" make shell interative, thus loading .zshrc
-"set shell=zsh\ -i
-"set shellcmdflag=-ic
+let g:snippets_dir="~/.vim/bundle/snipmate.vim/snippets/,~/.vim/snippets/"
+
+" Styling for tab menu
+hi TabLineFill ctermfg=black ctermbg=black
+hi TabLine ctermfg=black ctermbg=gray
+hi TabLineSel ctermfg=Red ctermbg=black
+
+" Reload vimrc
+map <Leader>v :e ~/.vim/vimrc<cr>
+map <Leader>s :source ~/.vim/vimrc<cr>
+
+" Ack
+map <Leader>f :Ack! 
+
+"New tab
+map <S-t> :tab new<cr>
+
+"background
+map <Leader>d :set background=dark<cr>
+map <Leader>l :set background=light<cr>
+
+" Slime config
+let g:slime_target = "tmux"
+
+
+
+colorscheme gruvbox
+set background=dark
+set colorcolumn=100
+
+" Rainbow parens
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+let @a='ilet!:^[vt S)f=r{A }^['
+function! ConvertLocalToLet()
+  normal 0^ilet!:vt S)f=r{A }
+endfunction
