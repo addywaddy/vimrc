@@ -3,48 +3,49 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'L9'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'tpope/vim-rails'
-Bundle "skwp/vim-ruby-conque"
-Bundle "kien/ctrlp.vim"
-Bundle "spolu/dwm.vim"
-Bundle 'tpope/vim-fugitive'
-Bundle "mileszs/ack.vim"
-Bundle "tpope/vim-haml"
-Bundle "michaeljsmith/vim-indent-object"
-Bundle "pangloss/vim-javascript"
-Bundle "ddollar/nerdcommenter"
-Bundle "tpope/vim-surround"
-Bundle "vim-scripts/taglist.vim"
-Bundle "ervandew/supertab"
-Bundle "tpope/vim-cucumber"
-Bundle "timcharper/textile.vim"
-Bundle "msanders/snipmate.vim"
-Bundle "tpope/vim-markdown"
-Bundle "godlygeek/tabular"
-Bundle "tpope/vim-unimpaired"
-Bundle "tpope/vim-endwise"
-Bundle "kchmck/vim-coffee-script"
-Bundle "scrooloose/syntastic"
-Bundle "walm/jshint.vim"
-Bundle "Lokaltog/vim-powerline"
-Bundle "rson/vim-conque"
-Bundle "jpalardy/vim-slime"
-Bundle "chriskempson/tomorrow-theme", {'rtp': 'vim/'}
-Bundle "vim-ruby/vim-ruby"
-Bundle "morhetz/gruvbox"
-Bundle "kana/vim-textobj-user"
-Bundle "nelstrom/vim-textobj-rubyblock"
-Bundle "wookiehangover/jshint.vim"
-Bundle "guns/vim-clojure-static"
-Bundle "kien/rainbow_parentheses.vim"
-Bundle "jiangmiao/auto-pairs"
-Bundle "sjl/vitality.vim"
-Bundle "tpope/vim-fireplace"
+"Bundle 'Lokaltog/vim-easymotion'
+"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+"Bundle 'tpope/vim-rails'
+"Bundle 'kien/ctrlp.vim'
+"Bundle 'spolu/dwm.vim'
+"Bundle 'mileszs/ack.vim'
+"Bundle 'tpope/vim-haml'
+"Bundle 'michaeljsmith/vim-indent-object'
+"Bundle 'pangloss/vim-javascript'
+"Bundle 'ddollar/nerdcommenter'
+"Bundle 'tpope/vim-surround'
+"Bundle 'vim-scripts/taglist.vim'
+"Bundle 'ervandew/supertab'
+"Bundle 'tpope/vim-cucumber'
+Bundle 'timcharper/textile.vim'
+"Bundle 'msanders/snipmate.vim'
+Bundle 'tpope/vim-markdown'
+"Bundle 'godlygeek/tabular'
+"Bundle 'tpope/vim-unimpaired'
+"Bundle 'tpope/vim-endwise'
+"Bundle 'kchmck/vim-coffee-script'
+"Bundle 'scrooloose/syntastic'
+"Bundle 'walm/jshint.vim'
+"Bundle 'Lokaltog/vim-powerline'
+"Bundle 'jpalardy/vim-slime'
+"Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+Bundle 'vim-ruby/vim-ruby'
+"Bundle 'morhetz/gruvbox'
+"Bundle 'kana/vim-textobj-user'
+"Bundle 'nelstrom/vim-textobj-rubyblock'
+"Bundle 'wookiehangover/jshint.vim'
+"Bundle 'guns/vim-clojure-static'
+"Bundle 'kien/rainbow_parentheses.vim'
+"Bundle 'jiangmiao/auto-pairs'
+"Bundle 'sjl/vitality.vim'
+"Bundle 'tpope/vim-fireplace'
+"Bundle 'tpope/vim-fugitive'
+"Bundle 'thoughbot/vim-rspec'
+"Bundle 'dhruvasagar/vim-table-mode'
+"Bundle 'othree/html5.vim'
 
 if has('gui_running')
-  set guifont=Inconsolata_for_Powerline:h15
+  set guifont=Inconsolata_for_Powerline:h17
   noremap <D-1> 1gt
   noremap <D-2> 2gt
   noremap <D-3> 3gt
@@ -80,6 +81,7 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 set list listchars=tab:\ \ ,trail:·
+highlight SpecialKey term=standout ctermbg=yellow guibg=yellow
 
 " Searching
 set hlsearch
@@ -112,7 +114,7 @@ set backspace=indent,eol,start
 " load the plugin and indent settings for the detected filetype
 filetype plugin indent on
 
-let g:ctrlp_custom_ignore = {'dir':  'doc/,coverage/'}
+let g:ctrlp_custom_ignore = 'git\|tmp'
 
 " Enable syntastic syntax checking
 let g:syntastic_enable_signs=1
@@ -158,21 +160,10 @@ map<Leader>t :TlistToggle<Cr>
 
 map <Leader>m :!markdown % > /tmp/test.html && open -a "Google Chrome" /tmp/test.html<Cr>
 
-imap jk <Esc>
 imap <C-e> <C-o>$
 imap <C-a> <C-o>0
-noremap ff /
-noremap ww :w<cr>
-noremap wq :wq<cr>
-noremap qq :q<cr>
 noremap j gj
 noremap k gk
-
-vmap " S"
-vmap ' S'
-vmap ( S)
-vmap { S}
-vmap [ S]
 
 let g:snippets_dir="~/.vim/bundle/snipmate.vim/snippets/,~/.vim/snippets/"
 
@@ -188,21 +179,27 @@ map <Leader>s :source ~/.vim/vimrc<cr>
 " Ack
 map <Leader>f :Ack! 
 
-"New tab
-map <S-t> :tab new<cr>
+" splits
+map <D-d> :split<cr>
+map <D-D> :vsplit<cr>
 
-"background
-map <Leader>d :set background=dark<cr>
-map <Leader>l :set background=light<cr>
+" Navigation
+map <Leader>e :Vexplore %:h<cr>
 
 " Slime config
 let g:slime_target = "tmux"
 
-
+" Netrw default listing style
+let g:netrw_liststyle = 3
+" Netrw files to hide
+let g:netrw_list_hide= '\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_hide=1
 
 colorscheme gruvbox
 set background=dark
 set colorcolumn=100
+   
+highlight SpecialKey ctermfg=2
 
 " Rainbow parens
 au VimEnter * RainbowParenthesesToggle
