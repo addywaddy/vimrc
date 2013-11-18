@@ -165,6 +165,9 @@ imap <C-a> <C-o>0
 noremap j gj
 noremap k gk
 
+" Reindent when pasting
+:nnoremap p ]p
+
 let g:snippets_dir="~/.vim/bundle/snipmate.vim/snippets/,~/.vim/snippets/"
 
 " Styling for tab menu
