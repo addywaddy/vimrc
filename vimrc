@@ -18,7 +18,7 @@ Bundle 'vim-scripts/taglist.vim'
 Bundle 'ervandew/supertab'
 Bundle 'tpope/vim-cucumber'
 Bundle 'timcharper/textile.vim'
-"Bundle 'msanders/snipmate.vim'
+Bundle 'bling/vim-airline'
 Bundle 'tpope/vim-markdown'
 Bundle 'godlygeek/tabular'
 Bundle 'tpope/vim-unimpaired'
@@ -26,7 +26,6 @@ Bundle 'tpope/vim-endwise'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'scrooloose/syntastic'
 Bundle 'walm/jshint.vim'
-Bundle 'Lokaltog/vim-powerline'
 Bundle 'jpalardy/vim-slime'
 Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Bundle 'vim-ruby/vim-ruby'
@@ -44,9 +43,15 @@ Bundle 'tpope/vim-dispatch'
 Bundle 'thoughbot/vim-rspec'
 Bundle 'dhruvasagar/vim-table-mode'
 Bundle 'othree/html5.vim'
+Bundle 'majutsushi/tagbar'
+Bundle 'evanmiller/nginx-vim-syntax'
+Bundle 'chrisbra/csv.vim'
+Bundle 'sickill/vim-pasta'
+Bundle 'itchyny/calendar.vim'
 
+set guifont=Inconsolata_for_Powerline:h17
+let g:airline_powerline_fonts = 1
 if has('gui_running')
-  set guifont=Inconsolata_for_Powerline:h17
   noremap <D-1> 1gt
   noremap <D-2> 2gt
   noremap <D-3> 3gt
@@ -106,8 +111,6 @@ set laststatus=2
 au BufNewFile,BufRead *.json set ft=javascript
 
 au BufRead,BufNewFile *.less set ft=css
-
-au BufRead,BufNewFile *.txt call s:setupWrapping()
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -169,7 +172,7 @@ noremap k gk
 " Reindent when pasting
 :nnoremap p ]p
 
-let g:snippets_dir="~/.vim/bundle/snipmate.vim/snippets/,~/.vim/snippets/"
+"let g:snippets_dir="~/.vim/bundle/snipmate.vim/snippets/,~/.vim/snippets/"
 
 " Styling for tab menu
 hi TabLineFill ctermfg=black ctermbg=black
@@ -215,3 +218,24 @@ let @a='ilet!:^[vt S)f=r{A }^['
 function! ConvertLocalToLet()
   normal 0^ilet!:vt S)f=r{A }
 endfunction
+
+function! ConvertHashRockets()
+  %s/\v:([^'|"][^ ]+) +\=\> +([^,|\}|\)]+)/\1: \2/g
+endfunction
+
+function! ConvertToExpect()
+  normal iexpectlv/.shouldhS)%fscwto
+endfunction
+
+function! MultiLineArgs()
+  normal f(aV:s/,/,\r/g$V%=f(V%:Tabularize /:\zs:nohf(%i
+endfunction
+
+let g:rspec_command = "!zeus rspec --no-color {spec}"
+
+" vim-rspec mappings
+map <Leader>rl :call RunLastSpec()<CR>
+map <Leader>rs :call RunNearestSpec()<CR>
+
+" open sesame
+map <Leader>h :!herein<CR>
