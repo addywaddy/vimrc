@@ -1,68 +1,67 @@
 " Vundle
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-Bundle 'gmarik/vundle'
-Bundle 'L9'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'tpope/vim-rails'
-Bundle 'kien/ctrlp.vim'
-Bundle 'spolu/dwm.vim'
-Bundle 'mileszs/ack.vim'
-Bundle 'tpope/vim-haml'
-Bundle 'michaeljsmith/vim-indent-object'
-Bundle 'pangloss/vim-javascript'
-Bundle 'ddollar/nerdcommenter'
-Bundle 'tpope/vim-surround'
-Bundle 'vim-scripts/taglist.vim'
-Bundle 'ervandew/supertab'
-Bundle 'tpope/vim-cucumber'
-Bundle 'timcharper/textile.vim'
-Bundle 'bling/vim-airline'
-Bundle 'tpope/vim-markdown'
-Bundle 'godlygeek/tabular'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-endwise'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'scrooloose/syntastic'
-Bundle 'walm/jshint.vim'
-Bundle 'jpalardy/vim-slime'
-Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'morhetz/gruvbox'
-Bundle 'kana/vim-textobj-user'
-Bundle 'nelstrom/vim-textobj-rubyblock'
-Bundle 'wookiehangover/jshint.vim'
-Bundle 'guns/vim-clojure-static'
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'jiangmiao/auto-pairs'
-Bundle 'sjl/vitality.vim'
-Bundle 'tpope/vim-fireplace'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-dispatch'
-Bundle 'thoughbot/vim-rspec'
-Bundle 'dhruvasagar/vim-table-mode'
-Bundle 'othree/html5.vim'
-Bundle 'majutsushi/tagbar'
-Bundle 'evanmiller/nginx-vim-syntax'
-Bundle 'chrisbra/csv.vim'
-Bundle 'sickill/vim-pasta'
-Bundle 'itchyny/calendar.vim'
+Plugin 'gmarik/vundle'
+Plugin 'L9'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'tpope/vim-rails'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-haml'
+Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'pangloss/vim-javascript'
+Plugin 'ddollar/nerdcommenter'
+Plugin 'tpope/vim-surround'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'ervandew/supertab'
+Plugin 'tpope/vim-cucumber'
+Plugin 'timcharper/textile.vim'
+Plugin 'bling/vim-airline'
+Plugin 'tpope/vim-markdown'
+Plugin 'godlygeek/tabular'
+Plugin 'tpope/vim-endwise'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'scrooloose/syntastic'
+Plugin 'jpalardy/vim-slime'
+Plugin 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'morhetz/gruvbox'
+Plugin 'kana/vim-textobj-user'
+Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'wookiehangover/jshint.vim'
+Plugin 'guns/vim-clojure-static'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'sjl/vitality.vim'
+Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-dispatch'
+Plugin 'dhruvasagar/vim-table-mode'
+Plugin 'othree/html5.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'evanmiller/nginx-vim-syntax'
+Plugin 'chrisbra/csv.vim'
+Plugin 'sickill/vim-pasta'
+Plugin 'itchyny/calendar.vim'
+Plugin 'gcmt/wildfire.vim'
+Plugin 'mhinz/vim-signify'
+Plugin 'lmeijvogel/vim-yaml-helper'
+Plugin 'jgdavey/vim-blockle'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'haya14busa/incsearch.vim'
+Plugin 'asciidoc/asciidoc'
+Plugin 'ngmy/vim-rubocop'
+Plugin 'janko-m/vim-test'
 
-set guifont=Inconsolata_for_Powerline:h17
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+
+set guifont=Inconsolata_for_Powerline:h15
+set guifont=Sauce_Code_Powerline_Light:h14
 let g:airline_powerline_fonts = 1
-if has('gui_running')
-  noremap <D-1> 1gt
-  noremap <D-2> 2gt
-  noremap <D-3> 3gt
-  noremap <D-4> 4gt
-  noremap <D-5> 5gt
-  noremap <D-6> 6gt
-  noremap <D-7> 7gt
-  noremap <D-8> 8gt
-  noremap <D-9> 9gt
-  Bundle 'thanthese/Tortoise-Typing'
-endif
 
 " Set the Leader key
 let mapleader=","
@@ -111,6 +110,7 @@ set laststatus=2
 au BufNewFile,BufRead *.json set ft=javascript
 
 au BufRead,BufNewFile *.less set ft=css
+au BufRead,BufNewFile *.adoc set ft=asciidoc
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -122,7 +122,7 @@ let g:ctrlp_custom_ignore = 'git\|tmp'
 
 " Enable syntastic syntax checking
 let g:syntastic_enable_signs=1
-let g:syntastic_quiet_warnings=1
+let g:syntastic_quiet_messages = {'level': 'warnings'}
 
 " Directories for swp files
 "set backupdir=~/.vim/backup
@@ -162,7 +162,7 @@ map<Leader>t :TlistToggle<Cr>
 
 " Simple Markdown generation
 
-map <Leader>m :!markdown % > /tmp/test.html && open -a "Google Chrome" /tmp/test.html<Cr>
+map <Leader>m :! cp ~/.vim/markdown/bootstrap.min.css /tmp && echo "$(cat ~/.vim/markdown/head.html) `markdown %` $(cat ~/.vim/markdown/foot.html)" > /tmp/test.html && open -a "Google Chrome" /tmp/test.html<Cr>
 
 imap <C-e> <C-o>$
 imap <C-a> <C-o>0
@@ -171,8 +171,6 @@ noremap k gk
 
 " Reindent when pasting
 :nnoremap p ]p
-
-"let g:snippets_dir="~/.vim/bundle/snipmate.vim/snippets/,~/.vim/snippets/"
 
 " Styling for tab menu
 hi TabLineFill ctermfg=black ctermbg=black
@@ -185,13 +183,16 @@ map <Leader>s :source ~/.vim/vimrc<cr>
 
 " Ack
 map <Leader>f :Ack! 
+" Use ag instead
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " splits
-map <D-d> :split<cr>
-map <D-D> :vsplit<cr>
+map <D-D> :split<cr>
+map <D-d> :vsplit<cr>
 
 " Navigation
 map <Leader>e :Vexplore %:h<cr>
+map <Leader>y :YamlGoToKey! 
 
 " Slime config
 let g:slime_target = "tmux"
@@ -205,7 +206,7 @@ let g:netrw_hide=1
 colorscheme gruvbox
 set background=dark
 set colorcolumn=100
-   
+
 highlight SpecialKey ctermfg=2
 
 " Rainbow parens
@@ -231,11 +232,27 @@ function! MultiLineArgs()
   normal f(aV:s/,/,\r/g$V%=f(V%:Tabularize /:\zs:nohf(%i
 endfunction
 
-let g:rspec_command = "!zeus rspec --no-color {spec}"
-
-" vim-rspec mappings
-map <Leader>rl :call RunLastSpec()<CR>
-map <Leader>rs :call RunNearestSpec()<CR>
+function! Slurp()
+  normal ldwhPl
+endfunction
 
 " open sesame
 map <Leader>h :!herein<CR>
+
+" regenerate ctags
+map <Leader>c :!ctags --languages=ruby -R $(git rev-parse --show-toplevel) --exclude=.git<CR>
+
+" close other splits
+map <Leader>d :only<CR>
+:set diffopt+=vertical
+
+" GStatus
+map <Leader>g :Gstatus<CR>
+
+" Asciidoc Preview
+map <Leader>ap ! asciidoctor %<CR>
+map <Leader>sw :call Slurp()<CR>
+
+" Vim Test
+let test#strategy = "iterm"
+let test#ruby#rspec#executable = 'zeus rspec'
