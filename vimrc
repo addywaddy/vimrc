@@ -58,10 +58,22 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
+Plugin 'triglav/vim-visual-increment'
 
 set guifont=Inconsolata_for_Powerline:h15
 set guifont=Sauce_Code_Powerline_Light:h14
 let g:airline_powerline_fonts = 1
+if has('gui_running')
+  noremap <D-1> 1gt
+  noremap <D-2> 2gt
+  noremap <D-3> 3gt
+  noremap <D-4> 4gt
+  noremap <D-5> 5gt
+  noremap <D-6> 6gt
+  noremap <D-7> 7gt
+  noremap <D-8> 8gt
+  noremap <D-9> 9gt
+endif
 
 " Set the Leader key
 let mapleader=","
@@ -103,7 +115,7 @@ set wildignore+=*/doc/*
 set laststatus=2
 
 " Syntaxes
-  au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru,*.pill}    set ft=ruby
+au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru,*.pill}    set ft=ruby
 
 "au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 
@@ -111,6 +123,7 @@ au BufNewFile,BufRead *.json set ft=javascript
 
 au BufRead,BufNewFile *.less set ft=css
 au BufRead,BufNewFile *.adoc set ft=asciidoc
+au BufRead,BufNewFile *.boot set ft=clj
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -206,7 +219,6 @@ let g:netrw_hide=1
 colorscheme gruvbox
 set background=dark
 set colorcolumn=100
-
 highlight SpecialKey ctermfg=2
 
 " Rainbow parens
@@ -232,6 +244,14 @@ function! MultiLineArgs()
   normal f(aV:s/,/,\r/g$V%=f(V%:Tabularize /:\zs:nohf(%i
 endfunction
 
+function! MultiLineHash()
+  normal avt}:s/,/,\r/gf}ilv%=
+endfunction
+
+function! MultiLineParams()
+  normal ivi):<80>kuf)ikvi)=
+endfunction
+
 function! Slurp()
   normal ldwhPl
 endfunction
@@ -255,4 +275,13 @@ map <Leader>sw :call Slurp()<CR>
 
 " Vim Test
 let test#strategy = "iterm"
-let test#ruby#rspec#executable = 'zeus rspec'
+let test#ruby#rspec#executable = 'bundle exec spring rspec'
+
+nmap <silent> <leader>tn :TestNearest<CR>
+nmap <silent> <leader>tf :TestFile<CR>
+nmap <silent> <leader>ts :TestSuite<CR>
+nmap <silent> <leader>tl :TestLast<CR>
+nmap <silent> <leader>tv :TestVisit<CR>
+set lines=50
+set columns=200
+
