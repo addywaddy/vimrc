@@ -13,7 +13,7 @@ Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'pangloss/vim-javascript'
 Plugin 'ddollar/nerdcommenter'
 Plugin 'tpope/vim-surround'
-Plugin 'vim-scripts/taglist.vim'
+Plugin 'taglist.vim'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-cucumber'
 Plugin 'timcharper/textile.vim'
@@ -50,8 +50,6 @@ Plugin 'lmeijvogel/vim-yaml-helper'
 Plugin 'jgdavey/vim-blockle'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'haya14busa/incsearch.vim'
-Plugin 'asciidoc/asciidoc'
-Plugin 'ngmy/vim-rubocop'
 Plugin 'janko-m/vim-test'
 
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -59,6 +57,11 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'triglav/vim-visual-increment'
+Plugin 'thanthese/Tortoise-Typing'
+Plugin 'ngmy/vim-rubocop'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'jceb/vim-orgmode'
 
 set guifont=Inconsolata_for_Powerline:h15
 set guifont=Sauce_Code_Powerline_Light:h14
@@ -282,6 +285,9 @@ nmap <silent> <leader>tf :TestFile<CR>
 nmap <silent> <leader>ts :TestSuite<CR>
 nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>tv :TestVisit<CR>
+nmap <silent> <leader>aa :AV<CR>
+
+nmap <silent> <leader>ru :RuboCop<CR>
 set lines=50
 set columns=200
 
