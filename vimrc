@@ -61,7 +61,18 @@ Plugin 'thanthese/Tortoise-Typing'
 Plugin 'ngmy/vim-rubocop'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tpope/vim-speeddating'
 Plugin 'jceb/vim-orgmode'
+Plugin 'tomlion/vim-solidity'
+Plugin 'tpope/vim-eunuch'
+Plugin 'tpope/vim-abolish'
+
+" Color Schemes
+Plugin 'aereal/vim-colors-japanesque'
+Plugin 'roosta/srcery'
+Plugin 'gummesson/stereokai.vim'
+Plugin 'rakr/vim-one'
+Plugin 'aliou/moriarty.vim'
 
 set guifont=Inconsolata_for_Powerline:h15
 set guifont=Sauce_Code_Powerline_Light:h14
@@ -127,6 +138,7 @@ au BufNewFile,BufRead *.json set ft=javascript
 au BufRead,BufNewFile *.less set ft=css
 au BufRead,BufNewFile *.adoc set ft=asciidoc
 au BufRead,BufNewFile *.boot set ft=clj
+au BufNewFile,BufRead *.orgy setfiletype org
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -219,7 +231,7 @@ let g:netrw_liststyle = 3
 let g:netrw_list_hide= '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_hide=1
 
-colorscheme gruvbox
+colorscheme one
 set background=dark
 set colorcolumn=100
 highlight SpecialKey ctermfg=2
@@ -263,7 +275,7 @@ endfunction
 map <Leader>h :!herein<CR>
 
 " regenerate ctags
-map <Leader>c :!ctags --languages=ruby -R $(git rev-parse --show-toplevel) --exclude=.git<CR>
+map <Leader>c :!ctags --languages=ruby,javascript -R $(git rev-parse --show-toplevel) --exclude=.git<CR>
 
 " close other splits
 map <Leader>d :only<CR>
