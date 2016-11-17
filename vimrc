@@ -1,5 +1,5 @@
 " Vundle
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
 Plugin 'gmarik/vundle'
 Plugin 'L9'
@@ -66,6 +66,7 @@ Plugin 'jceb/vim-orgmode'
 Plugin 'tomlion/vim-solidity'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-abolish'
+Plugin 'MichaelMalick/vim-colors-bluedrake'
 
 " Color Schemes
 Plugin 'aereal/vim-colors-japanesque'
@@ -231,8 +232,10 @@ let g:netrw_liststyle = 3
 let g:netrw_list_hide= '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_hide=1
 
-colorscheme one
-set background=dark
+set background=light
+colorscheme bluedrake
+"colorscheme one
+"set background=dark
 set colorcolumn=100
 highlight SpecialKey ctermfg=2
 
