@@ -74,6 +74,8 @@ Plugin 'roosta/srcery'
 Plugin 'gummesson/stereokai.vim'
 Plugin 'rakr/vim-one'
 Plugin 'aliou/moriarty.vim'
+Plugin 'chriskempson/base16-vim'
+Plugin 'jacoborus/tender'
 
 set guifont=Inconsolata_for_Powerline:h15
 set guifont=Sauce_Code_Powerline_Light:h14
@@ -232,12 +234,12 @@ let g:netrw_liststyle = 3
 let g:netrw_list_hide= '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_hide=1
 
-set background=light
-colorscheme bluedrake
-"colorscheme one
-"set background=dark
+colorscheme one
+set background=dark
 set colorcolumn=100
 highlight SpecialKey ctermfg=2
+map <Leader>bl :set background=light<CR>
+map <Leader>bd :set background=dark<CR>
 
 " Rainbow parens
 au VimEnter * RainbowParenthesesToggle
@@ -263,7 +265,7 @@ function! MultiLineArgs()
 endfunction
 
 function! MultiLineHash()
-  normal avt}:s/,/,\r/gf}ilv%=
+  normal :s/,/,\r/g/)il%ava)=:noh
 endfunction
 
 function! MultiLineParams()
@@ -290,7 +292,7 @@ map <Leader>g :Gstatus<CR>
 " Asciidoc Preview
 map <Leader>ap ! asciidoctor %<CR>
 map <Leader>sw :call Slurp()<CR>
-
+map <Leader>hml :call MultiLineHash()<CR>
 " Vim Test
 let test#strategy = "iterm"
 let test#ruby#rspec#executable = 'bundle exec spring rspec'
