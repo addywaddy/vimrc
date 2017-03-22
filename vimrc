@@ -82,7 +82,6 @@ Plugin 'jacoborus/tender'
 Plugin 'lambdatoast/elm.vim'
 Plugin 'dkprice/vim-easygrep'
 
-set guifont=Inconsolata_for_Powerline:h15
 set guifont=Sauce_Code_Powerline_Light:h14
 let g:airline_powerline_fonts = 1
 if has('gui_running')
