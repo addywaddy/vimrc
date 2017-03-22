@@ -80,6 +80,7 @@ Plugin 'aliou/moriarty.vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'jacoborus/tender'
 Plugin 'lambdatoast/elm.vim'
+Plugin 'dkprice/vim-easygrep'
 
 set guifont=Inconsolata_for_Powerline:h15
 set guifont=Sauce_Code_Powerline_Light:h14
@@ -311,4 +312,4 @@ nmap <silent> <leader>aa :AV<CR>
 nmap <silent> <leader>ru :RuboCop<CR>
 set lines=50
 set columns=200
-
+set grepprg=ag\ --nogroup\ --nocolor
