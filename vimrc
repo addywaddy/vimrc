@@ -68,6 +68,7 @@ Plugin 'tomlion/vim-solidity'
 Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-abolish'
 Plugin 'MichaelMalick/vim-colors-bluedrake'
+Plugin 'bhurlow/vim-parinfer'
 
 " Color Schemes
 Plugin 'aereal/vim-colors-japanesque'
