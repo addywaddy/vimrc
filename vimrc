@@ -69,6 +69,7 @@ Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-abolish'
 Plugin 'MichaelMalick/vim-colors-bluedrake'
 Plugin 'bhurlow/vim-parinfer'
+Plugin 'tpope/vim-unimpaired'
 
 " Color Schemes
 Plugin 'aereal/vim-colors-japanesque'
