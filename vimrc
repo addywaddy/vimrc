@@ -79,6 +79,7 @@ Plugin 'rakr/vim-one'
 Plugin 'aliou/moriarty.vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'jacoborus/tender'
+Plugin 'lambdatoast/elm.vim'
 
 set guifont=Inconsolata_for_Powerline:h15
 set guifont=Sauce_Code_Powerline_Light:h14
