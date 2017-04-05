@@ -11,25 +11,26 @@ Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-haml'
 Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 Plugin 'ddollar/nerdcommenter'
 Plugin 'tpope/vim-surround'
 Plugin 'taglist.vim'
 Plugin 'ervandew/supertab'
 Plugin 'tpope/vim-cucumber'
 Plugin 'timcharper/textile.vim'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-markdown'
 Plugin 'godlygeek/tabular'
 Plugin 'tpope/vim-endwise'
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'scrooloose/syntastic'
+Plugin 'vim-syntastic/syntastic'
 Plugin 'jpalardy/vim-slime'
 Plugin 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'morhetz/gruvbox'
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'wookiehangover/jshint.vim'
 Plugin 'guns/vim-clojure-static'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'jiangmiao/auto-pairs'
@@ -227,7 +228,7 @@ map <D-d> :vsplit<cr>
 
 " Navigation
 map <Leader>e :Vexplore %:h<cr>
-map <Leader>y :YamlGoToKey! 
+map <Leader>y :YamlGoToKey!
 
 " Slime config
 let g:slime_target = "tmux"
@@ -238,7 +239,8 @@ let g:netrw_liststyle = 3
 let g:netrw_list_hide= '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_hide=1
 
-colorscheme one
+colorscheme Tomorrow-Night-Eighties
+let g:airline_theme = 'tomorrow'
 set background=dark
 set colorcolumn=100
 highlight SpecialKey ctermfg=2
@@ -312,3 +314,12 @@ nmap <silent> <leader>ru :RuboCop<CR>
 set lines=50
 set columns=200
 set grepprg=ag\ --nogroup\ --nocolor
+let g:syntastic_quiet_messages = {}
+let g:syntastic_ruby_checkers = ['rubocop', 'mri']
+let g:syntastic_ruby_rubocop_args = "--force-exclusion --display-cop-names --no-color"
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_loc_list_height=4
