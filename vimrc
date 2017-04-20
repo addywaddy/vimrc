@@ -1,78 +1,65 @@
 " Vundle
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
-Plugin 'gmarik/vundle'
-Plugin 'L9'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'tpope/vim-rails'
-Plugin 'kien/ctrlp.vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'tpope/vim-haml'
-Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'ddollar/nerdcommenter'
-Plugin 'tpope/vim-surround'
-Plugin 'taglist.vim'
-Plugin 'ervandew/supertab'
-Plugin 'tpope/vim-cucumber'
-Plugin 'timcharper/textile.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-markdown'
-Plugin 'godlygeek/tabular'
-Plugin 'tpope/vim-endwise'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'jpalardy/vim-slime'
-Plugin 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'morhetz/gruvbox'
-Plugin 'kana/vim-textobj-user'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'guns/vim-clojure-static'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'sjl/vitality.vim'
-Plugin 'tpope/vim-fireplace'
-Plugin 'tpope/vim-fugitive'
-Plugin 'junegunn/gv.vim'
-Plugin 'tpope/vim-dispatch'
-Plugin 'dhruvasagar/vim-table-mode'
-Plugin 'othree/html5.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'evanmiller/nginx-vim-syntax'
-Plugin 'chrisbra/csv.vim'
-Plugin 'sickill/vim-pasta'
-Plugin 'itchyny/calendar.vim'
-Plugin 'gcmt/wildfire.vim'
-Plugin 'mhinz/vim-signify'
-Plugin 'lmeijvogel/vim-yaml-helper'
-Plugin 'jgdavey/vim-blockle'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'haya14busa/incsearch.vim'
-Plugin 'janko-m/vim-test'
+Plugin 'VundleVim/Vundle.vim'
 
+" Not sure
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
-Plugin 'triglav/vim-visual-increment'
-Plugin 'thanthese/Tortoise-Typing'
-Plugin 'ngmy/vim-rubocop'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'tpope/vim-speeddating'
-Plugin 'jceb/vim-orgmode'
-Plugin 'tomlion/vim-solidity'
-Plugin 'tpope/vim-eunuch'
-Plugin 'tpope/vim-abolish'
-Plugin 'MichaelMalick/vim-colors-bluedrake'
+Plugin 'L9'
+
+" Syntax
+Plugin 'tpope/vim-rails'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'othree/html5.vim'
+Plugin 'evanmiller/nginx-vim-syntax'
+Plugin 'chrisbra/csv.vim'
+Plugin 'tpope/vim-markdown'
+Plugin 'guns/vim-clojure-static'
+Plugin 'w0rp/ale'
+Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'bhurlow/vim-parinfer'
 Plugin 'tpope/vim-unimpaired'
 
+" Text manipulation
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'michaeljsmith/vim-indent-object'
+Plugin 'ddollar/nerdcommenter'
+Plugin 'tpope/vim-surround'
+Plugin 'godlygeek/tabular'
+Plugin 'tpope/vim-endwise'
+Plugin 'kana/vim-textobj-user'
+Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-dispatch'
+Plugin 'dhruvasagar/vim-table-mode'
+Plugin 'itchyny/calendar.vim'
+Plugin 'gcmt/wildfire.vim'
+Plugin 'lmeijvogel/vim-yaml-helper'
+Plugin 'jgdavey/vim-blockle'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'triglav/vim-visual-increment'
+Plugin 'jceb/vim-orgmode'
+Plugin 'tpope/vim-eunuch'
+Plugin 'sickill/vim-pasta'
+
+" Search / Rreplace
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'haya14busa/incsearch.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'taglist.vim'
+
+" Autocomplete
+Plugin 'ervandew/supertab'
+
 " Color Schemes
+Plugin 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+Plugin 'morhetz/gruvbox'
+Plugin 'MichaelMalick/vim-colors-bluedrake'
 Plugin 'aereal/vim-colors-japanesque'
 Plugin 'roosta/srcery'
 Plugin 'gummesson/stereokai.vim'
@@ -82,6 +69,19 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'jacoborus/tender'
 Plugin 'lambdatoast/elm.vim'
 Plugin 'dkprice/vim-easygrep'
+
+" VCS
+Plugin 'tpope/vim-fugitive'
+Plugin 'junegunn/gv.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'mhinz/vim-signify'
+
+" Status
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+" Utils
+Plugin 'janko-m/vim-test'
 
 set guifont=Sauce_Code_Powerline_Light:h14
 let g:airline_powerline_fonts = 1
@@ -155,10 +155,6 @@ set backspace=indent,eol,start
 filetype plugin indent on
 
 let g:ctrlp_custom_ignore = 'git\|tmp'
-
-" Enable syntastic syntax checking
-let g:syntastic_enable_signs=1
-let g:syntastic_quiet_messages = {'level': 'warnings'}
 
 " Directories for swp files
 "set backupdir=~/.vim/backup
@@ -310,16 +306,16 @@ nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>tv :TestVisit<CR>
 nmap <silent> <leader>aa :AV<CR>
 
-nmap <silent> <leader>ru :RuboCop<CR>
 set lines=50
 set columns=200
 set grepprg=ag\ --nogroup\ --nocolor
-let g:syntastic_quiet_messages = {}
-let g:syntastic_ruby_checkers = ['rubocop', 'mri']
-let g:syntastic_ruby_rubocop_args = "--force-exclusion --display-cop-names --no-color"
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_loc_list_height=4
+
+call airline#parts#define_function('ALE', 'ALEGetStatusLine')
+call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
+
+let g:airline_section_error = airline#section#create_right(['ALE'])
+let g:ale_sign_warning = '🤖'
+let g:ale_sign_error = '🤖'
+
+let g:calendar_google_calendar = 1
+let g:calendar_google_task = 1
