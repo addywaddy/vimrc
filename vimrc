@@ -1,6 +1,8 @@
 " Vundle
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#rc()
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Not sure
@@ -82,6 +84,12 @@ Plugin 'vim-airline/vim-airline-themes'
 
 " Utils
 Plugin 'janko-m/vim-test'
+
+" Snippets
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+
+call vundle#end()
 
 set guifont=Sauce_Code_Powerline_Light:h14
 let g:airline_powerline_fonts = 1
