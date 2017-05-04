@@ -297,7 +297,7 @@ map <Leader>sw :call Slurp()<CR>
 map <Leader>hml :call MultiLineHash()<CR>
 " Vim Test
 let test#strategy = "iterm"
-let test#ruby#rspec#executable = 'bundle exec rspec'
+let test#ruby#rspec#executable = 'rspring'
 
 nmap <silent> <leader>tn :TestNearest<CR>
 nmap <silent> <leader>tf :TestFile<CR>
