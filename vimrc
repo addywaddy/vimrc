@@ -24,6 +24,7 @@ Plugin 'w0rp/ale'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'bhurlow/vim-parinfer'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'tomlion/vim-solidity'
 
 " Text manipulation
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -69,7 +70,10 @@ Plugin 'rakr/vim-one'
 Plugin 'aliou/moriarty.vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'jacoborus/tender'
-Plugin 'lambdatoast/elm.vim'
+Plugin 'daylerees/colour-schemes', {'rtp': 'vim/'}
+Plugin 'fenetikm/falcon'
+
+Plugin 'elmcast/elm-vim'
 Plugin 'dkprice/vim-easygrep'
 
 " VCS
@@ -91,8 +95,10 @@ Plugin 'honza/vim-snippets'
 
 call vundle#end()
 
-set guifont=Sauce_Code_Powerline_Light:h14
+
+set guifont=FiraCode-Regular:h14
 let g:airline_powerline_fonts = 1
+let g:airline_theme = 'base16'
 if has('gui_running')
   noremap <D-1> 1gt
   noremap <D-2> 2gt
@@ -103,6 +109,9 @@ if has('gui_running')
   noremap <D-7> 7gt
   noremap <D-8> 8gt
   noremap <D-9> 9gt
+  colorscheme falcon
+else
+  colorscheme falcon
 endif
 
 " Set the Leader key
@@ -138,8 +147,8 @@ set smartcase
 
 " Tab completion
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,coverage/,tmp/,log/
-set wildignore+=*/doc/*
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,coverage/,tmp/,log/,node_modules/
+set wildignore+=*/.git/*,*/log/*,*/node_modules/*,*/tmp/*,*/coverage/*,*/doc/*
 
 " Status bar
 set laststatus=2
@@ -161,8 +170,6 @@ set backspace=indent,eol,start
 
 " load the plugin and indent settings for the detected filetype
 filetype plugin indent on
-
-let g:ctrlp_custom_ignore = 'git\|tmp'
 
 " Directories for swp files
 "set backupdir=~/.vim/backup
@@ -243,8 +250,6 @@ let g:netrw_liststyle = 3
 let g:netrw_list_hide= '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_hide=1
 
-colorscheme Tomorrow-Night-Eighties
-let g:airline_theme = 'tomorrow'
 set background=dark
 set colorcolumn=100
 highlight SpecialKey ctermfg=2
@@ -270,30 +275,29 @@ function! ConvertToExpect()
   normal iexpectlv/.shouldhS)%fscwto
 endfunction
 
-function! MultiLineArgs()
-  normal f(aV:s/,/,\r/g$V%=f(V%:Tabularize /:\zs:nohf(%i
-endfunction
-
 function! MultiLineHash()
   normal :s/,/,\r/g/)il%ava)=:noh
-endfunction
-
-function! MultiLineParams()
-  normal ivi):<80>kuf)ikvi)=
 endfunction
 
 function! Slurp()
   normal ldwhPl
 endfunction
 
+function! ChangeQuotes()
+  normal cs"'
+endfunction
+
 " open sesame
 map <Leader>h :!herein<CR>
 
 " regenerate ctags
-map <Leader>c :!ctags --languages=ruby,javascript -R $(git rev-parse --show-toplevel) --exclude=.git<CR>
+map <Leader>c :!ctags -R --sort=yes --exclude=.git --exclude=node_modules $(git rev-parse --show-toplevel)<CR>
 
 " close other splits
 map <Leader>d :only<CR>
+nnoremap <C-W>[ <C-W>\| <C-W>_
+nnoremap <C-W>] <C-W>=
+
 :set diffopt+=vertical
 
 " GStatus
@@ -313,6 +317,8 @@ nmap <silent> <leader>ts :TestSuite<CR>
 nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>tv :TestVisit<CR>
 nmap <silent> <leader>aa :AV<CR>
+nmap <silent> <leader>' :call ChangeQuotes()<CR>
+nmap <silent> <leader>j :e ~/Documents/journal.txt<CR>
 
 set lines=50
 set columns=200
@@ -321,9 +327,22 @@ set grepprg=ag\ --nogroup\ --nocolor
 call airline#parts#define_function('ALE', 'ALEGetStatusLine')
 call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
 
+let g:ale_linters = {
+\   'javascript': ['flow', 'standard'],
+\}
+let g:ale_pattern_options = {
+\   '.*\.html.erb$': {'ale_enabled': 1}
+\}
+
 let g:airline_section_error = airline#section#create_right(['ALE'])
 let g:ale_sign_warning = '🤖'
 let g:ale_sign_error = '🤖'
 
 let g:calendar_google_calendar = 1
 let g:calendar_google_task = 1
+
+let g:jsx_ext_required = 0
+autocmd FileType javascript runtime! ftplugin/html/sparkup.vim
+
+let g:AutoPairsShortcuts = 0
+let b:AutoPairsMoveCharacter = ""
