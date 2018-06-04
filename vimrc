@@ -113,6 +113,8 @@ if has('gui_running')
   noremap <D-8> 8gt
   noremap <D-9> 9gt
   colorscheme base16-solarflare
+  set lines=50
+  set columns=200
 else
   colorscheme Tomorrow-Night-Eighties
 endif
@@ -327,8 +329,6 @@ nmap <silent> <leader>aa :AV<CR>
 nmap <silent> <leader>' :call ChangeQuotes()<CR>
 nmap <silent> <leader>j :e ~/Documents/journal.txt<CR>
 
-set lines=50
-set columns=200
 set grepprg=ag\ --nogroup\ --nocolor
 
 call airline#parts#define_function('ALE', 'ALEGetStatusLine')
