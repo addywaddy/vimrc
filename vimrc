@@ -36,8 +36,6 @@ Plugin 'tpope/vim-endwise'
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'tpope/vim-fireplace'
-Plugin 'tpope/vim-dispatch'
 Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'itchyny/calendar.vim'
 Plugin 'gcmt/wildfire.vim'
@@ -93,10 +91,15 @@ Plugin 'janko-m/vim-test'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 
+" Clojure
+Plugin 'tpope/vim-salve'
+Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-fireplace'
+
 call vundle#end()
 
 
-set guifont=FiraCode-Regular:h14
+set guifont=Sauce\ Code\ Powerline\ Light:h13
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'base16'
 if has('gui_running')
@@ -109,9 +112,9 @@ if has('gui_running')
   noremap <D-7> 7gt
   noremap <D-8> 8gt
   noremap <D-9> 9gt
-  colorscheme falcon
+  colorscheme base16-solarflare
 else
-  colorscheme falcon
+  colorscheme Tomorrow-Night-Eighties
 endif
 
 " Set the Leader key
@@ -252,6 +255,7 @@ let g:netrw_hide=1
 
 set background=dark
 set colorcolumn=100
+set tw=100
 highlight SpecialKey ctermfg=2
 map <Leader>bl :set background=light<CR>
 map <Leader>bd :set background=dark<CR>
@@ -295,7 +299,10 @@ map <Leader>c :!ctags -R --sort=yes --exclude=.git --exclude=node_modules $(git 
 
 " close other splits
 map <Leader>d :only<CR>
+
+" Maximise current split
 nnoremap <C-W>[ <C-W>\| <C-W>_
+" Equalise splits
 nnoremap <C-W>] <C-W>=
 
 :set diffopt+=vertical
