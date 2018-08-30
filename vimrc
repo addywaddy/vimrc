@@ -1,102 +1,105 @@
 " Vundle
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
+"set rtp+=~/.vim/bundle/Vundle.vim
+call plug#begin()
+"call vundle#begin()
+Plug 'VundleVim/Vundle.vim'
 
 " Not sure
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'L9'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'vim-scripts/L9'
 
 " Syntax
-Plugin 'tpope/vim-rails'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'othree/html5.vim'
-Plugin 'evanmiller/nginx-vim-syntax'
-Plugin 'chrisbra/csv.vim'
-Plugin 'tpope/vim-markdown'
-Plugin 'guns/vim-clojure-static'
-Plugin 'w0rp/ale'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'bhurlow/vim-parinfer'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tomlion/vim-solidity'
+Plug 'tpope/vim-rails'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'vim-ruby/vim-ruby'
+Plug 'othree/html5.vim'
+Plug 'chr4/nginx.vim'
+Plug 'chrisbra/csv.vim'
+Plug 'tpope/vim-markdown'
+Plug 'guns/vim-clojure-static'
+Plug 'w0rp/ale'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'bhurlow/vim-parinfer'
+Plug 'tpope/vim-unimpaired'
+Plug 'tomlion/vim-solidity'
 
 " Text manipulation
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'ddollar/nerdcommenter'
-Plugin 'tpope/vim-surround'
-Plugin 'godlygeek/tabular'
-Plugin 'tpope/vim-endwise'
-Plugin 'kana/vim-textobj-user'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'dhruvasagar/vim-table-mode'
-Plugin 'itchyny/calendar.vim'
-Plugin 'gcmt/wildfire.vim'
-Plugin 'lmeijvogel/vim-yaml-helper'
-Plugin 'jgdavey/vim-blockle'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'triglav/vim-visual-increment'
-Plugin 'jceb/vim-orgmode'
-Plugin 'tpope/vim-eunuch'
-Plugin 'sickill/vim-pasta'
+Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'ddollar/nerdcommenter'
+Plug 'tpope/vim-surround'
+Plug 'godlygeek/tabular'
+Plug 'tpope/vim-endwise'
+Plug 'kana/vim-textobj-user'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'jiangmiao/auto-pairs'
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'itchyny/calendar.vim'
+Plug 'gcmt/wildfire.vim'
+Plug 'lmeijvogel/vim-yaml-helper'
+Plug 'jgdavey/vim-blockle'
+Plug 'junegunn/vim-easy-align'
+Plug 'triglav/vim-visual-increment'
+Plug 'jceb/vim-orgmode'
+Plug 'tpope/vim-eunuch'
+Plug 'sickill/vim-pasta'
 
 " Search / Rreplace
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'haya14busa/incsearch.vim'
-Plugin 'kien/ctrlp.vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'taglist.vim'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'haya14busa/incsearch.vim'
+Plug 'kien/ctrlp.vim'
+Plug '/usr/local/opt/fzf'
+Plug 'mileszs/ack.vim'
+Plug 'vim-scripts/taglist.vim'
 
 " Autocomplete
-Plugin 'ervandew/supertab'
+Plug 'ervandew/supertab'
 
 " Color Schemes
-Plugin 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
-Plugin 'morhetz/gruvbox'
-Plugin 'MichaelMalick/vim-colors-bluedrake'
-Plugin 'aereal/vim-colors-japanesque'
-Plugin 'roosta/srcery'
-Plugin 'gummesson/stereokai.vim'
-Plugin 'rakr/vim-one'
-Plugin 'aliou/moriarty.vim'
-Plugin 'chriskempson/base16-vim'
-Plugin 'jacoborus/tender'
-Plugin 'daylerees/colour-schemes', {'rtp': 'vim/'}
-Plugin 'fenetikm/falcon'
+Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+Plug 'morhetz/gruvbox'
+Plug 'MichaelMalick/vim-colors-bluedrake'
+Plug 'aereal/vim-colors-japanesque'
+Plug 'roosta/srcery'
+Plug 'gummesson/stereokai.vim'
+Plug 'rakr/vim-one'
+Plug 'aliou/moriarty.vim'
+Plug 'chriskempson/base16-vim'
+Plug 'jacoborus/tender'
+Plug 'daylerees/colour-schemes', {'rtp': 'vim/'}
+Plug 'fenetikm/falcon'
 
-Plugin 'elmcast/elm-vim'
-Plugin 'dkprice/vim-easygrep'
+Plug 'elmcast/elm-vim'
+Plug 'dkprice/vim-easygrep'
 
 " VCS
-Plugin 'tpope/vim-fugitive'
-Plugin 'junegunn/gv.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'mhinz/vim-signify'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 
 " Status
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Utils
-Plugin 'janko-m/vim-test'
+Plug 'janko-m/vim-test'
 
 " Snippets
-Plugin 'garbas/vim-snipmate'
-Plugin 'honza/vim-snippets'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
 
 " Clojure
-Plugin 'tpope/vim-salve'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-fireplace'
+Plug 'tpope/vim-salve'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fireplace'
 
-call vundle#end()
+"call vundle#end()
+call plug#end()
 
 
 set guifont=Sauce\ Code\ Powerline\ Light:h13
@@ -161,6 +164,8 @@ set laststatus=2
 " Syntaxes
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru,*.pill}    set ft=ruby
 
+" Spelling
+au BufRead,BufNewFile {*.md,*.txt} setlocal spell
 "au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 
 au BufNewFile,BufRead *.json set ft=javascript
@@ -297,7 +302,7 @@ endfunction
 map <Leader>h :!herein<CR>
 
 " regenerate ctags
-map <Leader>c :!ctags -R --sort=yes --exclude=.git --exclude=node_modules $(git rev-parse --show-toplevel)<CR>
+map <Leader>c :!ctags -R --sort=yes --exclude=.git --exclude=node_modules --exclude=public $(git rev-parse --show-toplevel)<CR>
 
 " close other splits
 map <Leader>d :only<CR>
@@ -345,11 +350,11 @@ let g:airline_section_error = airline#section#create_right(['ALE'])
 let g:ale_sign_warning = '🤖'
 let g:ale_sign_error = '🤖'
 
-let g:calendar_google_calendar = 1
-let g:calendar_google_task = 1
+"let g:calendar_google_calendar = 1
+"let g:calendar_google_task = 1
 
-let g:jsx_ext_required = 0
-autocmd FileType javascript runtime! ftplugin/html/sparkup.vim
+"let g:jsx_ext_required = 0
+"autocmd FileType javascript runtime! ftplugin/html/sparkup.vim
 
-let g:AutoPairsShortcuts = 0
-let b:AutoPairsMoveCharacter = ""
+"let g:AutoPairsShortcuts = 0
+"let b:AutoPairsMoveCharacter = ""
