@@ -22,6 +22,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-sensible'
 " Git
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 " Rails
 Plug 'tpope/vim-rails'
 " Solidity
@@ -50,8 +51,11 @@ Plug 'ervandew/supertab'
 Plug 'sickill/vim-pasta'
 " Indentation
 Plug 'michaeljsmith/vim-indent-object'
+
 " Test runner
 Plug 'janko-m/vim-test'
+
+Plug 'jpalardy/vim-slime'
 
 call plug#end()
 
@@ -75,7 +79,7 @@ set termguicolors
 let base16colorspace=256
 " Set the Leader key
 let mapleader=","
-let maplocalleader=","
+let maplocalleader="\\"
 
 " Searching
 set hlsearch
@@ -171,3 +175,16 @@ autocmd InsertLeave * hi link TrailingWhiteSpace Error
 
 " Use vertical diffs
 set diffopt+=vertical
+
+function! ChangeQuotes()
+  normal cs"'
+endfunction
+nmap <silent> <leader>' :call ChangeQuotes()<CR>
+" regenerate ctags
+map <Leader>c :!ctags -R --sort=yes --exclude=.git --exclude=node_modules --exclude=public $(git rev-parse --show-toplevel)<CR>
+
+let g:slime_target = "vimterminal"
+
+" Autopairs remaps Ctrl-u, which I use for writing umlauts on OSC with an en-US keyboard.
+let g:AutoPairsMoveCharacter = ''
+silent! iunmap ¨
