@@ -6,7 +6,7 @@ Plug 'chriskempson/base16-vim'
 " Alignment
 Plug 'junegunn/vim-easy-align'
 " Fuzzy find
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 " Status line
 Plug 'itchyny/lightline.vim'
@@ -51,6 +51,8 @@ Plug 'ervandew/supertab'
 Plug 'sickill/vim-pasta'
 " Indentation
 Plug 'michaeljsmith/vim-indent-object'
+" CSV highlighting
+Plug 'chrisbra/csv.vim'
 
 " Test runner
 Plug 'janko-m/vim-test'
@@ -59,10 +61,11 @@ Plug 'jpalardy/vim-slime'
 
 call plug#end()
 
-set guifont=Sauce\ Code\ Powerline\ Light:h13
+set guifont=Sauce\ Code\ Powerline\ Light:h14
 set number
 set linespace=2
 set wrap
+set linebreak
 set nocompatible
 set encoding=utf-8
 
@@ -182,9 +185,16 @@ endfunction
 nmap <silent> <leader>' :call ChangeQuotes()<CR>
 " regenerate ctags
 map <Leader>c :!ctags -R --sort=yes --exclude=.git --exclude=node_modules --exclude=public $(git rev-parse --show-toplevel)<CR>
+map <C-[> :1po<CR>
 
 let g:slime_target = "vimterminal"
 
 " Autopairs remaps Ctrl-u, which I use for writing umlauts on OSC with an en-US keyboard.
 let g:AutoPairsMoveCharacter = ''
 silent! iunmap ¨
+
+" Turn off the bells
+set noeb
+" ESC is now in touchbar so need to remap
+inoremap jk <Esc>
+vnoremap jk <Esc>
