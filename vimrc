@@ -185,7 +185,6 @@ endfunction
 nmap <silent> <leader>' :call ChangeQuotes()<CR>
 " regenerate ctags
 map <Leader>c :!ctags -R --sort=yes --exclude=.git --exclude=node_modules --exclude=public $(git rev-parse --show-toplevel)<CR>
-map <C-[> :1po<CR>
 
 let g:slime_target = "vimterminal"
 
