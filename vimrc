@@ -1,8 +1,10 @@
 let $FZF_DEFAULT_COMMAND='fd --type f'
-
+set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
 call plug#begin()
 " Colorschemes
 Plug 'chriskempson/base16-vim'
+Plug 'lmintmate/blue-mood-vim'
+Plug 'dracula/vim'
 " Alignment
 Plug 'junegunn/vim-easy-align'
 " Fuzzy find
@@ -44,7 +46,7 @@ Plug 'tpope/vim-obsession'
 " Autpairs
 Plug 'jiangmiao/auto-pairs'
 " Elm
-Plug 'elmcast/elm-vim'
+Plug 'Zaptic/elm-vim'
 " Tab completion
 Plug 'ervandew/supertab'
 " Indentation-aware pasting
@@ -53,15 +55,31 @@ Plug 'sickill/vim-pasta'
 Plug 'michaeljsmith/vim-indent-object'
 " CSV highlighting
 Plug 'chrisbra/csv.vim'
+" Vue
+Plug 'posva/vim-vue'
+" Typescript
+Plug 'leafgarland/typescript-vim'
+
+" Syntax
+Plug 'elixir-editors/vim-elixir'
+Plug 'hashivim/vim-terraform'
+
+" Search
+Plug 'wincent/ferret'
 
 " Test runner
 Plug 'janko-m/vim-test'
 
 Plug 'jpalardy/vim-slime'
 
+Plug 'christianrondeau/vim-base64'
+
+" Scratch pad
+Plug 'metakirby5/codi.vim'
+
 call plug#end()
 
-set guifont=Sauce\ Code\ Powerline\ Light:h14
+set guifont=Roboto\ Mono:h15
 set number
 set linespace=2
 set wrap
@@ -74,12 +92,17 @@ set shiftwidth=2
 set softtabstop=2
 set expandtab
 
-set colorcolumn=100
+set colorcolumn=120
 set tw=100
 
-colorscheme base16-atlas
-set termguicolors
-let base16colorspace=256
+" Hide scrollbars
+set guioptions=
+" Hide title and icons
+set notitle
+set noicon
+
+color base16-onedark
+color base16-one-light
 " Set the Leader key
 let mapleader=","
 let maplocalleader="\\"
@@ -97,17 +120,19 @@ au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru,*.pill}  
 au BufRead,BufNewFile {*.md,*.txt} setlocal spell
 "au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupMarkup()
 
-au BufNewFile,BufRead *.json set ft=javascript
+au BufNewFile,BufRead *.json set ft=json
 
 au BufRead,BufNewFile *.less set ft=css
 au BufRead,BufNewFile *.adoc set ft=asciidoc
 au BufRead,BufNewFile *.boot set ft=clj
 au BufNewFile,BufRead *.orgy setfiletype org
 
-" FZF shortcut
+" FZF
+let g:fzf_history_dir = '~/.fzf/history'
 noremap <C-p> :Files<CR>
 noremap <C-b> :Buffers<CR>
-map <Leader>f :Rg 
+map <Leader>f :Rg<CR>
+map <Leader>g :Acks 
 
 
 if has('gui_running')
@@ -147,11 +172,25 @@ map <Leader>d :only<CR>
 nnoremap <C-W>[ <C-W>\| <C-W>_
 " Equalise splits
 nnoremap <C-W>] <C-W>=
-" Vim Test
-let test#strategy = "iterm"
-let test#ruby#rspec#executable = 'rspring'
 
+" Vim Test
+let test#ruby#rails#executable = 'rails test -p'
+function! DockerTransform(cmd) abort
+  return 'docker exec -it payment-api '. a:cmd
+endfunction
+
+function! DefaultTransform(cmd) abort
+  return  a:cmd
+endfunction
+
+let g:test#custom_transformations = {'docker': function('DockerTransform'), 'default': function('DefaultTransform')}
+let g:test#transformation = 'docker'
+let g:test#strategy = 'vimterminal'
 nmap <silent> <leader>tn :TestNearest<CR>
+nmap <silent> <leader>tf :TestFile<CR>
+nmap <silent> <leader>ts :TestSuite<CR>
+nmap <silent> <leader>tl :TestLast<CR>
+nmap <silent> <leader>tv :TestVisit<CR>
 
 " Sod backups and swaps
 set nobackup
@@ -160,11 +199,13 @@ set noswapfile
 " Syntaxes
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru,*.pill}    set ft=ruby
 au BufRead,BufNewFile {*.md,*.txt} setlocal spell
-au BufNewFile,BufRead *.json set ft=javascript
 au BufRead,BufNewFile *.less set ft=css
 au BufRead,BufNewFile *.adoc set ft=asciidoc
 au BufRead,BufNewFile *.boot set ft=clj
 filetype plugin indent on
+
+" Sparkup for other filetypes
+autocmd FileType {vue,vuejs,jsx,js,ts} runtime! plugged/sparkup/vim/ftplugin/html/sparkup.vim
 
 " Reload vimrc
 map <Leader>v :e ~/.vim/vimrc<cr>
@@ -184,9 +225,23 @@ function! ChangeQuotes()
 endfunction
 nmap <silent> <leader>' :call ChangeQuotes()<CR>
 " regenerate ctags
-map <Leader>c :!ctags -R --sort=yes --exclude=.git --exclude=node_modules --exclude=public $(git rev-parse --show-toplevel)<CR>
+map <Leader>ct :!ctags -R --sort=yes --exclude=.git --exclude=tmp --exclude=node_modules --exclude=public $(git rev-parse --show-toplevel)<CR>
 
 let g:slime_target = "vimterminal"
+
+let g:lightline = {
+      \ 'colorscheme': 'one',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitroot', 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitroot': 'LightlineGitRoot',
+      \   'gitbranch': 'fugitive#head',
+      \   'filename': 'LightlineFilename',
+      \ },
+      \ }
+set noshowmode
 
 " Autopairs remaps Ctrl-u, which I use for writing umlauts on OSC with an en-US keyboard.
 let g:AutoPairsMoveCharacter = ''
@@ -194,6 +249,25 @@ silent! iunmap ¨
 
 " Turn off the bells
 set noeb
+set belloff=all
 " ESC is now in touchbar so need to remap
-inoremap jk <Esc>
-vnoremap jk <Esc>
+inoremap <C-j> <Esc>
+vnoremap <C-j> <Esc>
+
+nnoremap <C-s> :w<CR>
+
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
+endfunction
+
+function! LightlineGitRoot()
+  let git_dir = fnamemodify(get(b:, 'git_dir'), ':h')
+  let root = fnamemodify(git_dir, ':t')
+
+  return root
+endfunction
