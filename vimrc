@@ -77,9 +77,12 @@ Plug 'christianrondeau/vim-base64'
 " Scratch pad
 Plug 'metakirby5/codi.vim'
 
+" UML diagrams
+Plug 'aklt/plantuml-syntax'
+
 call plug#end()
 
-set guifont=Roboto\ Mono:h15
+set guifont=Roboto\ Mono:h14
 set number
 set linespace=2
 set wrap
@@ -101,8 +104,6 @@ set guioptions=
 set notitle
 set noicon
 
-color base16-onedark
-color base16-one-light
 " Set the Leader key
 let mapleader=","
 let maplocalleader="\\"
@@ -128,12 +129,19 @@ au BufRead,BufNewFile *.boot set ft=clj
 au BufNewFile,BufRead *.orgy setfiletype org
 
 " FZF
+if executable("rg")
+    set grepprg=rg\ --vimgrep\ --no-heading
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+
+" bind K to grep word under cursor
+
+let g:ackprg = 'rg --vimgrep --no-heading'
 let g:fzf_history_dir = '~/.fzf/history'
 noremap <C-p> :Files<CR>
 noremap <C-b> :Buffers<CR>
-map <Leader>f :Rg<CR>
-map <Leader>g :Acks 
-
+noremap <C-,> :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+map <Leader>f :Ack 
 
 if has('gui_running')
   noremap <D-1> 1gt
@@ -145,6 +153,7 @@ if has('gui_running')
   noremap <D-7> 7gt
   noremap <D-8> 8gt
   noremap <D-9> 9gt
+  color base16-oceanicnext
 else
   noremap <Leader>1 1gt
   noremap <Leader>2 2gt
@@ -155,10 +164,11 @@ else
   noremap <Leader>7 7gt
   noremap <Leader>8 8gt
   noremap <Leader>9 9gt
+  color dracula
 endif
 
 " Simple Markdown generation
-map <Leader>m :! cp ~/.vim/markdown/bootstrap.min.css /tmp && echo "$(cat ~/.vim/markdown/head.html) `markdown %` $(cat ~/.vim/markdown/foot.html)" > /tmp/test.html && open -a "Google Chrome" /tmp/test.html<Cr>
+map <Leader>m :! echo "`markdown %`" > /tmp/test.html && open -a "Google Chrome" /tmp/test.html<Cr>
 
 " Reindent when pasting
 :nnoremap p ]p
@@ -205,7 +215,7 @@ au BufRead,BufNewFile *.boot set ft=clj
 filetype plugin indent on
 
 " Sparkup for other filetypes
-autocmd FileType {vue,vuejs,jsx,js,ts} runtime! plugged/sparkup/vim/ftplugin/html/sparkup.vim
+autocmd FileType {vue,vuejs,jsx,js,ts,es6} runtime! plugged/sparkup/vim/ftplugin/html/sparkup.vim
 
 " Reload vimrc
 map <Leader>v :e ~/.vim/vimrc<cr>
@@ -271,3 +281,7 @@ function! LightlineGitRoot()
 
   return root
 endfunction
+
+let g:vue_pre_processors = ['typescript']
+
+set shell=/bin/bash
