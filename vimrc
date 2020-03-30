@@ -27,8 +27,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 " Rails
 Plug 'tpope/vim-rails'
-" Solidity
-Plug 'tomlion/vim-solidity'
 " Ruby blocks
 Plug 'jgdavey/vim-blockle'
 " Comments
@@ -45,24 +43,12 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-obsession'
 " Autpairs
 Plug 'jiangmiao/auto-pairs'
-" Elm
-Plug 'Zaptic/elm-vim'
 " Tab completion
 Plug 'ervandew/supertab'
 " Indentation-aware pasting
 Plug 'sickill/vim-pasta'
 " Indentation
 Plug 'michaeljsmith/vim-indent-object'
-" CSV highlighting
-Plug 'chrisbra/csv.vim'
-" Vue
-Plug 'posva/vim-vue'
-" Typescript
-Plug 'leafgarland/typescript-vim'
-
-" Syntax
-Plug 'elixir-editors/vim-elixir'
-Plug 'hashivim/vim-terraform'
 
 " Search
 Plug 'wincent/ferret'
@@ -77,8 +63,20 @@ Plug 'christianrondeau/vim-base64'
 " Scratch pad
 Plug 'metakirby5/codi.vim'
 
+" Syntax
+" CSV highlighting
+" Elm
+" Solidity
 " UML diagrams
-Plug 'aklt/plantuml-syntax'
+" Plug 'aklt/plantuml-syntax'
+" Plug 'tomlion/vim-solidity'
+" Plug 'Zaptic/elm-vim'
+" Plug 'chrisbra/csv.vim'
+" Plug 'posva/vim-vue'
+" Plug 'leafgarland/typescript-vim'
+" Plug 'elixir-editors/vim-elixir'
+" Plug 'hashivim/vim-terraform'
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
@@ -153,7 +151,7 @@ if has('gui_running')
   noremap <D-7> 7gt
   noremap <D-8> 8gt
   noremap <D-9> 9gt
-  color base16-oceanicnext
+  color base16-paraiso
 else
   noremap <Leader>1 1gt
   noremap <Leader>2 2gt
@@ -164,7 +162,6 @@ else
   noremap <Leader>7 7gt
   noremap <Leader>8 8gt
   noremap <Leader>9 9gt
-  color dracula
 endif
 
 " Simple Markdown generation
@@ -285,3 +282,6 @@ endfunction
 let g:vue_pre_processors = ['typescript']
 
 set shell=/bin/bash
+
+function! NextColorScheme()
+endfunction
