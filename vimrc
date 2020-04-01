@@ -153,6 +153,9 @@ if has('gui_running')
   noremap <D-9> 9gt
   color base16-paraiso
 else
+  set termguicolors
+  set background=dark
+  color base16-paraiso
   noremap <Leader>1 1gt
   noremap <Leader>2 2gt
   noremap <Leader>3 3gt
@@ -237,7 +240,7 @@ map <Leader>ct :!ctags -R --sort=yes --exclude=.git --exclude=tmp --exclude=node
 let g:slime_target = "vimterminal"
 
 let g:lightline = {
-      \ 'colorscheme': 'one',
+      \ 'colorscheme': 'seoul256',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitroot', 'gitbranch', 'readonly', 'filename', 'modified' ] ]
